@@ -1,0 +1,42 @@
+{% extends "base_generic.html" %}
+
+{% block title %}<title>Статистика</title>{% endblock %}
+
+{% block content %}<h3 class="my-0 mr-md-auto font-weight-normal">Просмотр статистики</<h3><p></p>
+
+<h5 class="my-0 mr-md-auto font-weight-normal">Статистика для {{cls.0}} класса:</h5> <p></p>
+
+{% if state %}
+
+  <table class="table-responsive table-hover">
+    <caption>В таблице приведены все записи</caption>
+    <thead>
+      <tr>
+        <th><div class="my-0 mr-md-auto font-weight-normal">День/Ученик</div></th>
+        {% for i in people %}
+          <th><div class="my-0 mr-md-auto font-weight-normal">{{i}}</div></th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in state %}
+        <tr scope = "row">
+          {% ifchanged i.date %}
+            <th><div class="my-0 mr-md-auto font-weight-normal">{{i.date}}</div></th>
+            {% for d in people%}
+              {% if d in i.people.all %}
+                <th><div class="my-0 mr-md-auto font-weight-normal">+</div></th>
+              {% else %}
+                <th><div class="my-0 mr-md-auto font-weight-normal">-</div></th>
+              {% endif %}
+            {% endfor %}
+          {% endifchanged %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <h4 class="my-0 mr-md-auto font-weight-normal">Нет ни одной записи для {{cls.0}} класса</h4>
+{% endif %}
+
+{% endblock %}

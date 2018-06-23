@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+{% block title %}<title>Выберите класс</title>{% endblock %}
+{% block content %}
+
+<h3 class="my-0 mr-md-auto font-weight-normal">Новая запись</<h3>
+<p></p>
+<div class="row">
+  <div class="col-sm-6">
+    <h5 class="my-0 mr-md-auto font-weight-normal">Выберите из списка один класc для добавления нового дня:</<h5>
+    <ul>
+      {% if class %}
+        {% for i in class %}
+          <h6 class="my-0 mr-md-auto font-weight-normal"><li><a href='{{ i.id }}'>{{i.school_class}} класс</a></li></h6>
+        {% endfor %}
+        {% else %}
+          <li>Список пуст!</li>
+      {% endif %}
+    </ul>
+  </div>
+  <div class="col-sm-6">
+    <h5 class="my-0 mr-md-auto font-weight-normal">Выберите из списка один класс для редактирования существующей записи:</<h5>
+    <ul>
+      {% for i in state_list %}
+        <h6 <h3 class="my-0 mr-md-auto font-weight-normal"><li><a href="edit/{{i.id}}/{{i.school_class_id}}">{{i.date}} - {{i.school_class}}</a></li>
+        </h6>
+      {% endfor %}
+      <h6 class="my-0 mr-md-auto font-weight-normal"><li><a href="{% url 'list'%}">(Показать весь список)</a></li></h6>
+    </ul>
+  </div>
+
+{% endblock %}

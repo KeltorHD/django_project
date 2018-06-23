@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+{% block title %}<title>Выберите класс</title>{% endblock %}
+{% block content %}
+
+<h3 class="my-0 mr-md-auto font-weight-normal">Просмотр статистики</<h3>
+<p></p>
+<h5 class="my-0 mr-md-auto font-weight-normal">Список всех классов, выберите один для просмотра статистики:</h5>
+<p></p>
+<ul>
+    {% if object_list %}
+      {% for i in object_list %}
+        <li><a href='{{ i.id }}'>{{i.school_class}} класс</a></li>
+      {% endfor %}
+    {% else %}
+      <li>Список пуст!</li>
+    {% endif %}
+</ul>
+
+{% endblock %}
