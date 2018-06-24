@@ -25,7 +25,7 @@ SECRET_KEY = '03=(j6*(+9)^16k810mdhh4gp(^o6+9x9b8x)1v&(cuh%9gtbx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['keltor2.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
