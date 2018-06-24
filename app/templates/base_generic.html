@@ -29,6 +29,7 @@
       {% if user.is_authenticated %}
         {{ user.get_username }}. <a href="#">Выйти</a>
       {% else %}
+        <button class="save btn btn-outline-primary"><a href="{% url 'login' %}">Войти</a></button>
       {% endif %} 
     </div>
     {% endblock %}

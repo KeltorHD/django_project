@@ -3,8 +3,32 @@
 {% block content %}
 
 <form method="POST" class="post-form">{% csrf_token %}
-	{{ form.as_p }}
-	<button type="submit" class="save btn btn-default">Войти</button>
+  <tr>
+    <th>
+      <label for="id_username">Логин:</label>
+    </th>
+    <td>
+      <input type="text" name="username" value="Keltor" maxlength="100" required id="id_username" />
+    </td>
+  </tr>
+  <p></p>
+
+  <tr>
+    <th>
+      <label for="id_password">Пароль:</label>
+    </th>
+    <td>
+      <input type="password" name="password" required id="id_password" />
+    </td>
+  </tr><p></p>
+
+  <button type="submit" class="save btn btn-default">Войти</button>
 </form>
+
+{% for message in messages %}
+  <div class="message {{ message.tags }}">
+    {{ message }}
+  </div>
+{% endfor %}
 
 {% endblock %}
