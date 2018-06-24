@@ -10,5 +10,7 @@ urlpatterns = [
     path('write/<int:pk>', views.newwrite, name = 'newwrite'),
     path('write/edit/<int:pk>/<int:kl>', views.edit, name = 'state_edit'),
     path('write/edit/', views.list, name = 'list'),
-    path('faq/', views.faq, name = 'faq')
+    path('faq/', views.faq, name = 'faq'),
+
+    path('login/', views.login, name = 'login')
 ]

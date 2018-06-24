@@ -27,10 +27,8 @@
         <a class="p-2 text-dark" href="{% url 'faq'%}">Чаво</a>
       </nav>
       {% if user.is_authenticated %}
-        {{ user.get_username }}.
-        <a href="{% url 'logout'%}?next={{request.path}}">Выйти</a>  
+        {{ user.get_username }}. <a href="#">Выйти</a>
       {% else %}
-        <a class="btn btn-outline-primary" href="{% url 'login'%}?next={{request.path}}">Войти в аккаунт</a>
       {% endif %} 
     </div>
     {% endblock %}

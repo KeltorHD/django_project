@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import People, State, SchoolClass
 from django.views import generic
 from django.contrib.auth.decorators import login_required
-from .forms import StateForm
+from .forms import StateForm, LoginForm
 
 def index(request):
     num_state = State.objects.all().count()
@@ -87,6 +87,14 @@ def list(request):
         request,
         'app/list.html',
         context = {'state':state})
+
+
+def login(request):
+    form = LoginForm()
+    return render(
+        request,
+        'app/login.html',
+        {'form': form})
 #from django.contrib.auth.decorators import login_required
 
 #@login_required
