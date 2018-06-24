@@ -3,10 +3,9 @@ from .models import People, State, SchoolClass
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from .forms import StateForm, LoginForm
-from django.contrib.auth import authenticate
-from django import forms
-from django.contrib import messages
-from django.contrib import auth
+from django.contrib.auth import authenticate, logout
+from django.contrib import messages, auth
+from django.contrib.auth import logout
 
 def index(request):
     num_state = State.objects.all().count()
@@ -108,13 +107,17 @@ def login(request):
                     print("The password is valid, but the account has been disabled!")
             else:
                 print("Логин или пароль неверны")
-                messages.error(request, 'Неверны логин или пароль')
+                messages.error(request, 'Неверный логин или пароль')
     else:
         form = LoginForm()
     return render(
         request,
         'app/login.html',
         {'form': form})
+def logout_view(request):
+    logout(request)
+    return redirect('index')
+
 #from django.contrib.auth.decorators import login_required
 
 #@login_required

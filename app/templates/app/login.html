@@ -1,34 +1,36 @@
-{% extends "base_generic.html" %}
 
-{% block content %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/stylelogin.css' %}">
 
-<form method="POST" class="post-form">{% csrf_token %}
-  <tr>
-    <th>
-      <label for="id_username">Логин:</label>
-    </th>
-    <td>
-      <input type="text" name="username" value="Keltor" maxlength="100" required id="id_username" />
-    </td>
-  </tr>
-  <p></p>
+  </head>
 
-  <tr>
-    <th>
-      <label for="id_password">Пароль:</label>
-    </th>
-    <td>
-      <input type="password" name="password" required id="id_password" />
-    </td>
-  </tr><p></p>
+  <body class="text-center">
 
-  <button type="submit" class="save btn btn-default">Войти</button>
-</form>
+    <form method='POST' class="form-signin post-form">{% csrf_token %}
+      <a href="{% url 'index' %}"><img class="mb-4" src="{% static 'img/log.svg' %}" alt="" width="72" height="72"></a>
+      <h1 class="h3 mb-3 font-weight-normal">Пожалуйста, войдите</h1>
+      <label for="id_username" class="sr-only">Логин</label>
+      <input type="text" name="username" value="Keltor" maxlength="100" required id="id_username"  class="form-control" placeholder="Логин" autofocus>
 
-{% for message in messages %}
-  <div class="message {{ message.tags }}">
-    {{ message }}
-  </div>
-{% endfor %}
+      <label for="id_password"></label>
+      <input type="password" name='password' id="id_password" class="form-control" placeholder="Пароль" required>
 
-{% endblock %}
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+
+      {% for message in messages %}
+        <div class="message {{ message.tags }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </form>
+
+  </body>
+</html>

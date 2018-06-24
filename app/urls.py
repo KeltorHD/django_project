@@ -12,5 +12,6 @@ urlpatterns = [
     path('write/edit/', views.list, name = 'list'),
     path('faq/', views.faq, name = 'faq'),
 
-    path('login/', views.login, name = 'login')
+    path('login/', views.login, name = 'login'),
+    path('logout/', views.logout_view, name = 'logout')
 ]

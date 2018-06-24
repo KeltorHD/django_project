@@ -27,9 +27,9 @@
         <a class="p-2 text-dark" href="{% url 'faq'%}">Чаво</a>
       </nav>
       {% if user.is_authenticated %}
-        {{ user.get_username }}. <a href="#">Выйти</a>
+        {{ user.get_username }}. <a href="{% url 'logout' %}">Выйти</a>
       {% else %}
-        <button class="save btn btn-outline-primary"><a href="{% url 'login' %}">Войти</a></button>
+        <a href="{% url 'login' %}" class="btn btn-outline-primary">Войти</a>
       {% endif %} 
     </div>
     {% endblock %}
