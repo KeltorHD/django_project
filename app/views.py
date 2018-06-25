@@ -6,19 +6,15 @@ from .forms import StateForm, LoginForm, RegisterForm
 from django.contrib.auth import authenticate, logout
 from django.contrib import messages, auth
 from django.contrib.auth import logout
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 def index(request):
-    num_state = State.objects.all().count()
-    num_people = People.objects.all().count()
 
-    num_visits=request.session.get('num_visits', 0)
-    request.session['num_visits'] = num_visits+1
-
+    group = request.user.groups.get().name
+    print(group)
     return render(
         request,
-        'index.html',
-        context = {'num_date':num_state, 'num_people':num_people, 'num_visits':num_visits})
+        'index.html')
 
 def faq(request):
     return render(
@@ -40,57 +36,77 @@ class ClassListView(generic.ListView):
 
 @login_required
 def writeindex(request):
-    school_class = SchoolClass.objects.all()
-    state_list = State.objects.order_by('-date')[0:5]
-    return render(
-        request,
-        'app/writeindex.html',
-        context = {'class':school_class, 'state_list':state_list})
+    if request.user.groups.get().name == 'Writer':
+        school_class = SchoolClass.objects.all()
+        state_list = State.objects.order_by('-date')[0:5]
+        return render(
+            request,
+            'app/writeindex.html',
+            context = {'class':school_class, 'state_list':state_list})
+    else:
+        return render(
+            request,
+            'app/permissions.html')
 
 @login_required
 def newwrite(request, pk):
-    if request.method == 'POST':
-        form = StateForm(request.POST)
-        if form.is_valid():
-            state = form.save(commit=False)
-            state.status = '+'
-            state.school_class = SchoolClass.objects.filter(id = '{}'.format(pk)).first()
-            state.school_class_id = str(pk)
-            state.save()
-            form.save_m2m()
-            return redirect('writeindex')
+    if request.user.groups.get().name == 'Writer':
+        if request.method == 'POST':
+            form = StateForm(request.POST)
+            if form.is_valid():
+                state = form.save(commit=False)
+                state.status = '+'
+                state.school_class = SchoolClass.objects.filter(id = '{}'.format(pk)).first()
+                state.school_class_id = str(pk)
+                state.save()
+                form.save_m2m()
+                return redirect('writeindex')
+        else:
+            form = StateForm()
+            form.fields['people'].queryset = People.objects.filter(school_class='{}'.format(pk))
+        return render(
+            request,
+            'app/newwrite.html',
+            context = {'form':form})
     else:
-        form = StateForm()
-        form.fields['people'].queryset = People.objects.filter(school_class='{}'.format(pk))
-    return render(
-        request,
-        'app/newwrite.html',
-        context = {'form':form})
+        return render(
+            request,
+            'app/permissions.html')
 
 @login_required
 def edit(request, pk, kl):
-    state = get_object_or_404(State, pk=pk)
-    if request.method == "POST":
-        form = StateForm(request.POST, instance=state)
-        if form.is_valid():
-            state = form.save(commit=False)
-            state.status = '+'
-            state.save()
-            form.save_m2m()
-            return redirect('writeindex')
+    if request.user.groups.get().name == 'Writer':
+        state = get_object_or_404(State, pk=pk)
+        if request.method == "POST":
+            form = StateForm(request.POST, instance=state)
+            if form.is_valid():
+                state = form.save(commit=False)
+                state.status = '+'
+                state.save()
+                form.save_m2m()
+                return redirect('writeindex')
+        else:
+            form = StateForm(instance=state)
+        return render(request, 
+            'app/newwrite.html', 
+            {'form': form})
     else:
-        form = StateForm(instance=state)
-    return render(request, 
-        'app/newwrite.html', 
-        {'form': form})
+        return render(
+            request,
+            'app/permissions.html')
 
 @login_required
 def list(request):
-    state = State.objects.order_by('-date')[0:50]
-    return render(
-        request,
-        'app/list.html',
-        context = {'state':state})
+    if request.user.groups.get().name == 'Writer':
+        state = State.objects.order_by('-date')[0:50]
+        return render(
+            request,
+            'app/list.html',
+            context = {'state':state})
+    else:
+        return render(
+            request,
+            'app/permissions.html')
 
 
 def login(request):
@@ -135,6 +151,8 @@ def register(request):
             user = User.objects.create_user(username, email, password1)
             user.first_name=first_name
             user.last_name=last_name
+            group = Group.objects.get(name='Member')
+            user.groups.add(group)
             user.save()
             log = authenticate(username=username, password=password1)
             auth.login(request, log)
@@ -145,7 +163,3 @@ def register(request):
         request,
         'app/register.html',
         {'form':form})
-#from django.contrib.auth.decorators import login_required
-
-#@login_required
-#def abc(request) - для проверки на регистрацию
