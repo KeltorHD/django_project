@@ -2,10 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import People, State, SchoolClass
 from django.views import generic
 from django.contrib.auth.decorators import login_required
-from .forms import StateForm, LoginForm
+from .forms import StateForm, LoginForm, RegisterForm
 from django.contrib.auth import authenticate, logout
 from django.contrib import messages, auth
 from django.contrib.auth import logout
+from django.contrib.auth.models import User
 
 def index(request):
     num_state = State.objects.all().count()
@@ -106,7 +107,6 @@ def login(request):
                 else:
                     print("The password is valid, but the account has been disabled!")
             else:
-                print("Логин или пароль неверны")
                 messages.error(request, 'Неверный логин или пароль')
     else:
         form = LoginForm()
@@ -118,6 +118,33 @@ def logout_view(request):
     logout(request)
     return redirect('index')
 
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username', None)
+            if User.objects.filter(username=username) != None:
+                messages.error(request, 'Пользователь с таким логином уже существует')
+            email = form.cleaned_data.get('email', None)
+            first_name = form.cleaned_data.get('first_name', None)
+            last_name = form.cleaned_data.get('last_name', None)
+            password1 = form.cleaned_data.get('password1', None)
+            password2 = form.cleaned_data.get('password2', None)
+            if password2 != password1:
+                messages.error(request, 'Пароли не совпадают')
+            user = User.objects.create_user(username, email, password1)
+            user.first_name=first_name
+            user.last_name=last_name
+            user.save()
+            log = authenticate(username=username, password=password1)
+            auth.login(request, log)
+            return redirect('index')
+    else:
+        form = RegisterForm()
+    return render(
+        request,
+        'app/register.html',
+        {'form':form})
 #from django.contrib.auth.decorators import login_required
 
 #@login_required

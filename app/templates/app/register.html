@@ -12,17 +12,34 @@
   </head>
 
   <body class="text-center">
+	
+
+
+
 
     <form method='POST' class="form-signin post-form">{% csrf_token %}
       <a href="{% url 'index' %}"><img class="mb-4" src="{% static 'img/log.svg' %}" alt="" width="72" height="72"></a>
-      <h1 class="h3 mb-3 font-weight-normal">Вход в аккаунт</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Регистрация</h1>
+
       <label for="id_username" class="sr-only">Логин</label>
       <input type="text" name="username" maxlength="100" required id="id_username"  class="form-control" placeholder="Логин" autofocus>
+      
+      <label for="id_email" class="sr-only"></label>
+      <input type="email" name="email" required id="id_email" class="form-control" placeholder="Электронная почта" autofocus>
+      
+      <label for="id_username" class="sr-only">Имя</label>
+      <input type="text" name="first_name" maxlength="100" required id="id_first_name"  class="form-control" placeholder="Имя" autofocus>
+
+      <label for="id_username" class="sr-only">Фамилия</label>
+      <input type="text" name="last_name" maxlength="100" required id="id_last_name"  class="form-control" placeholder="Фамилия" autofocus>
 
       <label for="id_password" class="sr-only">Пароль</label>
-      <input type="password" name='password' id="id_password" class="form-control" placeholder="Пароль" required>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>
-      <div class="text-left"><a href="{% url 'register' %}">Регистрация</a></div>
+      <input type="password" name='password1' id="id_password1" class="form-control" placeholder="Пароль" required>
+
+      <label for="id_password" class="sr-only">Повтор пароля</label>
+      <input type="password" name='password2' id="id_password2" class="form-control" placeholder="Повтор пароля" required>
+      
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрироваться</button>
       <p></p>
       {% for message in messages %}
         <div class="message {{ message.tags }}">

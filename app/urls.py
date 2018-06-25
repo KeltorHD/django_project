@@ -1,7 +1,6 @@
 from django.conf.urls import url
 from django.urls import path
 from . import views
-from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('', views.index, name = 'index'),
@@ -12,8 +11,8 @@ urlpatterns = [
     path('write/edit/<int:pk>/<int:kl>', views.edit, name = 'state_edit'),
     path('write/edit/', views.list, name = 'list'),
     path('faq/', views.faq, name = 'faq'),
-	path('index/', RedirectView.as_view(url='', permanent=False)),
 
     path('login/', views.login, name = 'login'),
-    path('logout/', views.logout_view, name = 'logout')
+    path('logout/', views.logout_view, name = 'logout'),
+    path('register/', views.register, name = 'register')
 ]

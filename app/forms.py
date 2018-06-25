@@ -30,3 +30,28 @@ class LoginForm(forms.Form):
         widget=forms.PasswordInput,
         error_messages={'required': 'Укажите пароль'})
     widgets = {'password': forms.PasswordInput()}
+
+class RegisterForm(forms.Form):
+    username = forms.CharField(
+        label='Логин',
+        max_length=100,
+        error_messages={'required': 'Укажите логин'})
+    email = forms.EmailField(
+        label='Электронная почта')
+    first_name = forms.CharField(
+        label='Имя',
+        max_length=100,
+        error_messages={'required': 'Укажите имя'})
+    last_name = forms.CharField(
+        label='Фамилия',
+        max_length=100,
+        error_messages={'required': 'Укажите фамилию'})
+    password1 = forms.CharField(
+        label='Пароль',
+        widget=forms.PasswordInput,
+        error_messages={'required': 'Укажите пароль'})
+    password2 = forms.CharField(
+        label='Повтор пароля',
+        widget=forms.PasswordInput,
+        error_messages={'required': 'Укажите повтор пароля'})
+    widgets = {'password1': forms.PasswordInput(), 'password2': forms.PasswordInput()}
