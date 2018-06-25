@@ -9,9 +9,6 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User, Group
 
 def index(request):
-
-    group = request.user.groups.get().name
-    print(group)
     return render(
         request,
         'index.html')
@@ -58,6 +55,7 @@ def newwrite(request, pk):
                 state.status = '+'
                 state.school_class = SchoolClass.objects.filter(id = '{}'.format(pk)).first()
                 state.school_class_id = str(pk)
+                state.author = request.user
                 state.save()
                 form.save_m2m()
                 return redirect('writeindex')
@@ -82,6 +80,7 @@ def edit(request, pk, kl):
             if form.is_valid():
                 state = form.save(commit=False)
                 state.status = '+'
+                state.author = request.user
                 state.save()
                 form.save_m2m()
                 return redirect('writeindex')

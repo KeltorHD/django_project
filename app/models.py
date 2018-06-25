@@ -30,6 +30,7 @@ class State(models.Model):
         blank = 'true')
     school_class = models.CharField(max_length=10)
     school_class_id = models.CharField(max_length=10)
+    author = models.CharField(max_length=100)
 
     def __str__(self):
         return '{} {}'.format(self.date, self.people.__str__())
