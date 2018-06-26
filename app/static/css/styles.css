@@ -2,22 +2,3 @@
 	margin-left: 0;
 	padding-left: 0;
 }
-table {
-    width: 100%;
-}
-th {
-    background-color: #0074d9;
-    color: #fff;
-    position: absolute;
-    left: 0;
-    width: 100px;
-}
-.outer {
-    position: relative
-}
-.inner {
-    overflow-x: scroll;
-    overflow-y: visible;
-    width: 400px;
-    margin-left: 100px;
-}

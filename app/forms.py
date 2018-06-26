@@ -55,3 +55,5 @@ class RegisterForm(forms.Form):
         widget=forms.PasswordInput,
         error_messages={'required': 'Укажите повтор пароля'})
     widgets = {'password1': forms.PasswordInput(), 'password2': forms.PasswordInput()}
+
+# class PasrecForm(for)

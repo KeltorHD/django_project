@@ -168,3 +168,21 @@ def register(request):
         request,
         'app/register.html',
         {'form':form})
+
+@login_required
+def account(request):
+    first_name = request.user.first_name
+    last_name = request.user.last_name
+    email = request.user.email
+    access = request.user.groups.get().name
+    return render(
+        request,
+        'app/account.html',
+        {'first_name':first_name, 'last_name':last_name, 'email':email.lower(), 'access':access})
+
+@login_required
+def pasrec(request):
+    print(request.user.password == 'Keltor7DuCd8')
+    return render(
+        request,
+        'app/pasrec.html')
