@@ -41,6 +41,8 @@
       
       <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрироваться</button>
       <p></p>
+      <div class="text-left">Нажимая "Зарегистрироваться", вы соглашаетесь с <a href="{% url 'confidencial'%}">политикой конфиденциальности</a></div>
+      <p></p>
       {% for message in messages %}
         <div class="message {{ message.tags }}">
           {{ message }}
@@ -48,6 +50,5 @@
       {% endfor %}
       <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
     </form>
-
   </body>
 </html>

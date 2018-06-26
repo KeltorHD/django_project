@@ -17,7 +17,8 @@ def faq(request):
     return render(
         request,
         'app/faq.html')
-
+    
+@login_required
 def class_detail_view(request, pk):
     state = State.objects.filter(school_class='{}'.format(SchoolClass.objects.filter(id=pk).first()))
     stistic = SchoolClass.objects.filter(id='{}'.format(pk))
@@ -106,6 +107,11 @@ def list(request):
         return render(
             request,
             'app/permissions.html')
+
+def confidencial(request):
+    return render(
+        request,
+        'app/confidencial.html')
 
 
 def login(request):
