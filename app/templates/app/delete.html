@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+{% block title %}<title>Удалить запись</title>{% endblock %}
+{% block content %}
+
+<h3 class="font-weight-normal">Удаление записи</<h3>
+
+<p></p>
+<h6 class="font-weight-normal">Вы действительно хотите удалить запись?</h6>
+<form method="POST" class="post-form">{% csrf_token %}
+	<button type="submit" class="btn btn-outline-primary">Да, удалить</button>
+	<a class="btn btn-outline-primary" href="{% url 'index' %}">Нет, верните меня на домашнюю страницу!</a>
+</form>
+
+
+
+{% endblock %}

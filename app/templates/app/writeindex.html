@@ -20,11 +20,15 @@
   <div class="col-sm-6">
     <h5 class="my-0 mr-md-auto font-weight-normal">Выберите из списка один класс для редактирования существующей записи:</<h5>
     <ul>
-      {% for i in state_list %}
-        <h6 <h3 class="my-0 mr-md-auto font-weight-normal"><li><a href="edit/{{i.id}}/{{i.school_class_id}}">{{i.date}} - {{i.school_class}}</a></li>
-        </h6>
-      {% endfor %}
-      <h6 class="my-0 mr-md-auto font-weight-normal"><li><a href="{% url 'list'%}">(Показать весь список)</a></li></h6>
+      {% if state_list %}
+        {% for i in state_list %}
+          <h6 <h3 class="font-weight-normal"><li><a href="edit/{{i.id}}/{{i.school_class_id}}">{{i.date}} - {{i.school_class}}</a></li>
+          </h6>
+        {% endfor %}
+        <h6 class="my-0 mr-md-auto font-weight-normal"><li><a href="{% url 'list'%}">(Показать весь список)</a></li></h6>
+      {% else %}
+        <h6 <h3 class="font-weight-normal"><li>Список пуст!</li></h6>
+      {% endif %}
     </ul>
   </div>
 

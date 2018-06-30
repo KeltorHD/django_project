@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import People, State, SchoolClass
 from django.views import generic
 from django.contrib.auth.decorators import login_required
-from .forms import StateForm, LoginForm, RegisterForm
+from .forms import StateForm, LoginForm, RegisterForm, PasrecForm
 from django.contrib.auth import authenticate, logout
 from django.contrib import messages, auth
 from django.contrib.auth import logout
@@ -20,7 +20,7 @@ def faq(request):
     
 @login_required
 def class_detail_view(request, pk):
-    state = State.objects.filter(school_class='{}'.format(SchoolClass.objects.filter(id=pk).first()))
+    state = State.objects.filter(school_class='{}'.format(SchoolClass.objects.filter(id=pk).first()), availability='+')
     stistic = SchoolClass.objects.filter(id='{}'.format(pk))
     people = People.objects.filter(school_class='{}'.format(pk))
     return render(
@@ -36,7 +36,7 @@ class ClassListView(generic.ListView):
 def writeindex(request):
     if request.user.groups.get().name == 'Writer':
         school_class = SchoolClass.objects.all()
-        state_list = State.objects.order_by('-date')[0:5]
+        state_list = State.objects.filter(availability='+').order_by('-date')[0:5]
         return render(
             request,
             'app/writeindex.html',
@@ -56,6 +56,7 @@ def newwrite(request, pk):
                 state.status = '+'
                 state.school_class = SchoolClass.objects.filter(id = '{}'.format(pk)).first()
                 state.school_class_id = str(pk)
+                state.availability = '+'
                 state.author = request.user
                 state.save()
                 form.save_m2m()
@@ -88,8 +89,26 @@ def edit(request, pk, kl):
         else:
             form = StateForm(instance=state)
         return render(request, 
-            'app/newwrite.html', 
-            {'form': form})
+            'app/edit.html', 
+            {'form': form,'id':pk})
+    else:
+        return render(
+            request,
+            'app/permissions.html')
+
+@login_required
+def delete(request,pk):
+    if request.user.groups.get().name == 'Writer':
+        state = get_object_or_404(State, pk=pk)
+        if request.method == "POST":
+            state.availability = '-'
+            state.save()
+            return redirect('writeindex')
+        else:
+            return render(
+                request,
+                'app/delete.html',
+                {'state':state})
     else:
         return render(
             request,
@@ -98,7 +117,7 @@ def edit(request, pk, kl):
 @login_required
 def list(request):
     if request.user.groups.get().name == 'Writer':
-        state = State.objects.order_by('-date')[0:50]
+        state = State.objects.filter(availability='+').order_by('-date')[0:50]
         return render(
             request,
             'app/list.html',
@@ -182,7 +201,28 @@ def account(request):
 
 @login_required
 def pasrec(request):
-    print(request.user.password == 'Keltor7DuCd8')
+    if request.method == 'POST':
+        form = PasrecForm(request.POST)
+        if form.is_valid():
+            password = form.cleaned_data.get('password')
+            password1 = form.cleaned_data.get('password1')
+            password2 = form.cleaned_data.get('password2')
+            if request.user.check_password(password):
+                if password2 == password1:
+                    user = User.objects.get(username=request.user.username)
+                    user.set_password('{}'.format(password1))
+                    user.save()
+                    log = authenticate(username=request.user.username, password=password1)
+                    auth.login(request, log)
+                    return redirect('account')
+                else:
+                    messages.error(request, 'Новые пароли не совпадают')
+            else:
+                messages.error(request, 'Старый пароль неверен!')
+            
+    else:
+        form = PasrecForm()
     return render(
         request,
-        'app/pasrec.html')
+        'app/pasrec.html',
+        {'form':form})
