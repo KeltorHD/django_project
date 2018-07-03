@@ -57,7 +57,7 @@ def newwrite(request, pk):
                 state.school_class = SchoolClass.objects.filter(id = '{}'.format(pk)).first()
                 state.school_class_id = str(pk)
                 state.availability = '+'
-                state.author = request.user
+                state.author = str(request.user)
                 state.save()
                 form.save_m2m()
                 return redirect('writeindex')
@@ -82,7 +82,7 @@ def edit(request, pk, kl):
             if form.is_valid():
                 state = form.save(commit=False)
                 state.status = '+'
-                state.author = request.user
+                state.author = str(request.user)
                 state.save()
                 form.save_m2m()
                 return redirect('writeindex')
