@@ -1,4 +1,9 @@
-#id{
-	margin-left: 0;
-	padding-left: 0;
+.navbar-brand {
+  font-size: 1.5rem;
+}
+.navbar-brand :hover{
+  text-decoration: underline;
+}
+.nav-item :hover{
+  text-decoration: underline;
 }
