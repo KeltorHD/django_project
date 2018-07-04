@@ -29,13 +29,17 @@ def class_detail_view(request, pk):
         context = {'state': state, 'cls':stistic, 'people':people})
 
 
-class ClassListView(generic.ListView):
-    model = SchoolClass
+def class_list(request):
+    school_class = SchoolClass.objects.order_by('id')
+    return render(
+        request,
+        'app/schoolclass_list.html',
+        {'school_class':school_class})
 
 @login_required
 def writeindex(request):
     if request.user.groups.get().name == 'Writer':
-        school_class = SchoolClass.objects.all()
+        school_class = SchoolClass.objects.order_by('id')
         state_list = State.objects.filter(availability='+').order_by('-date')[0:5]
         return render(
             request,

@@ -2,32 +2,35 @@
 {% block title %}<title>Выберите класс</title>{% endblock %}
 {% block content %}
 
-<h3 class="my-0 mr-md-auto font-weight-normal">Новая запись</<h3>
+<h3 class="font-weight-normal">Новая запись</<h3>
 <p></p>
 <div class="row">
   <div class="col-sm-6">
-    <h5 class="my-0 mr-md-auto font-weight-normal">Выберите из списка один класc для добавления нового дня:</<h5>
+    <h5 class="font-weight-normal">Выберите из списка один класc для добавления нового дня:</<h5>
+    <p></p>
     <ul>
       {% if class %}
         {% for i in class %}
-          <h6 class="my-0 mr-md-auto font-weight-normal"><li><a href='{{ i.id }}'>{{i.school_class}} класс</a></li></h6>
+          <li><h6 class="list"><a href='{{ i.id }}' class="font-weight-normal">{{i.school_class}} класс</a></h6></li>
         {% endfor %}
         {% else %}
-          <li>Список пуст!</li>
+          <li class="list">Список пуст!</li>
       {% endif %}
     </ul>
+
   </div>
   <div class="col-sm-6">
-    <h5 class="my-0 mr-md-auto font-weight-normal">Выберите из списка один класс для редактирования существующей записи:</<h5>
+    <h5 class="font-weight-normal">Выберите из списка один класс для редактирования существующей записи:</<h5>
+    <p></p>
     <ul>
       {% if state_list %}
         {% for i in state_list %}
-          <h6 <h3 class="font-weight-normal"><li><a href="edit/{{i.id}}/{{i.school_class_id}}">{{i.date}} - {{i.school_class}}</a></li>
+          <h6 class="font-weight-normal"><li><a href="edit/{{i.id}}/{{i.school_class_id}}">{{i.date}} - {{i.school_class}}</a></li>
           </h6>
         {% endfor %}
-        <h6 class="my-0 mr-md-auto font-weight-normal"><li><a href="{% url 'list'%}">(Показать весь список)</a></li></h6>
+        <h6 class="font-weight-normal"><li><a href="{% url 'list'%}">(Показать весь список)</a></li></h6>
       {% else %}
-        <h6 <h3 class="font-weight-normal"><li>Список пуст!</li></h6>
+        <h6 class="font-weight-normal"><li>Список пуст!</li></h6>
       {% endif %}
     </ul>
   </div>

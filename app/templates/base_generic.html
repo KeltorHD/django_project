@@ -3,6 +3,8 @@
 <head>
   
   {% block title %}<title>ЕшьУдобно</title>{% endblock %}
+
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
@@ -10,10 +12,12 @@
   
   <!-- Добавление дополнительного статического CSS файла -->
   {% load static %}
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}" />
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
 <body>
+
   <div class="container">
 
     {% block sidebar %}
@@ -52,7 +56,6 @@
     {% endblock %}
 
     <div class="pt-3">{% block content %}{% endblock %}</div>
-
   </div>
   
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
