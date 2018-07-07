@@ -1,38 +1,41 @@
 {% extends "base_generic.html" %}
 {% block title %}<title>Выберите класс</title>{% endblock %}
 {% block content %}
+<div class="container">
+  <h3 class="font-weight-normal">Новая запись</<h3>
+  <p></p>
+  <div class="row">
+    <div class="col-sm-6">
+      <h5 class="font-weight-normal">Выберите из списка один класc для добавления нового дня:</<h5>
+      <p></p>
+      <ul>
+        {% if class %}
+          {% for i in class %}
+            <li><h6 class="list"><a href='{{ i.id }}' class="font-weight-normal">{{i.school_class}} класс</a></h6></li>
+          {% endfor %}
+          {% else %}
+            <li class="list">Список пуст!</li>
+        {% endif %}
+      </ul>
 
-<h3 class="font-weight-normal">Новая запись</<h3>
-<p></p>
-<div class="row">
-  <div class="col-sm-6">
-    <h5 class="font-weight-normal">Выберите из списка один класc для добавления нового дня:</<h5>
-    <p></p>
-    <ul>
-      {% if class %}
-        {% for i in class %}
-          <li><h6 class="list"><a href='{{ i.id }}' class="font-weight-normal">{{i.school_class}} класс</a></h6></li>
-        {% endfor %}
+    </div>
+    <div class="col-sm-6">
+      <h5 class="font-weight-normal">Выберите из списка один класс для редактирования существующей записи:</<h5>
+      <p></p>
+      <ul>
+        {% if state_list %}
+          {% for i in state_list %}
+            <h6 class="font-weight-normal"><li><a href="edit/{{i.id}}">{{i.date}} - {{i.school_class}}</a></li>
+            </h6>
+          {% endfor %}
+          <h6 class="font-weight-normal"><li><a href="{% url 'list'%}">(Показать весь список)</a></li></h6>
         {% else %}
-          <li class="list">Список пуст!</li>
-      {% endif %}
-    </ul>
+          <h6 class="font-weight-normal"><li>Список пуст!</li></h6>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>
 
-  </div>
-  <div class="col-sm-6">
-    <h5 class="font-weight-normal">Выберите из списка один класс для редактирования существующей записи:</<h5>
-    <p></p>
-    <ul>
-      {% if state_list %}
-        {% for i in state_list %}
-          <h6 class="font-weight-normal"><li><a href="edit/{{i.id}}/{{i.school_class_id}}">{{i.date}} - {{i.school_class}}</a></li>
-          </h6>
-        {% endfor %}
-        <h6 class="font-weight-normal"><li><a href="{% url 'list'%}">(Показать весь список)</a></li></h6>
-      {% else %}
-        <h6 class="font-weight-normal"><li>Список пуст!</li></h6>
-      {% endif %}
-    </ul>
-  </div>
 
 {% endblock %}

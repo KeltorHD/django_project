@@ -78,7 +78,7 @@ def newwrite(request, pk):
             'app/permissions.html')
 
 @login_required
-def edit(request, pk, kl):
+def edit(request, pk):
     if request.user.groups.get().name == 'Writer':
         state = get_object_or_404(State, pk=pk)
         if request.method == "POST":

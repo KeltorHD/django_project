@@ -2,14 +2,17 @@
 {% block title %}<title>Изменить запись</title>{% endblock %}
 {% block content %}
 
-<h3 class="font-weight-normal">Редактирование записи</<h3>
+<div class="container">
+  <h3 class="font-weight-normal">Редактирование записи</<h3>
 
-<p></p>
-<form method="POST" class="post-form">{% csrf_token %}
-    <h6 "font-weight-normal">{{ form.as_p }}</h6>
-    <button type="submit" class="save btn btn-outline-primary">Сохранить</button>
-    <a href="{% url 'delete' id %}" class="btn btn-outline-primary">Удалить запись</a>
-</form>
+  <p></p>
+  <form method="POST" class="post-form">{% csrf_token %}
+      <h6 "font-weight-normal">{{ form.as_p }}</h6>
+      <button type="submit" class="save btn btn-outline-primary">Сохранить</button>
+      <a href="{% url 'delete' id %}" class="btn btn-outline-primary">Удалить запись</a>
+  </form>
+</div>
+
 
 
 {% endblock %}

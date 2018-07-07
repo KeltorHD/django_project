@@ -2,13 +2,17 @@
 {% block title %}<title>Список последних записей</title>{% endblock %}
 {% block content %}
 
-<h3 class="my-0 mr-md-auto font-weight-normal">Список последних 50 записей:</h3>
-<p></p>
-<ul>
-  {% for i in state %}
-    <h6 <h3 class="my-0 mr-md-auto font-weight-normal"><li><a href="{{i.id}}/{{i.school_class_id}}">{{i.date}} - {{i.school_class}}</a></li>
-    </h6>
-  {% endfor %}
-</ul>
+<div class="container">
+	<h3 class="my-0 mr-md-auto font-weight-normal">Список последних 50 записей:</h3>
+	<p></p>
+	<ul>
+	  {% for i in state %}
+	    <h6 <h3 class="my-0 mr-md-auto font-weight-normal"><li><a href="{{i.id}}">{{i.date}} - {{i.school_class}}</a></li>
+	    </h6>
+	  {% endfor %}
+	</ul>
+</div>
+
+
 
 {% endblock %}
