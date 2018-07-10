@@ -11,7 +11,7 @@
       <ul>
         {% if class %}
           {% for i in class %}
-            <li><h6 class="list"><a href='{{ i.id }}' class="font-weight-normal">{{i.school_class}} класс</a></h6></li>
+            <li><a href='{{ i.id }}' class="href">{{i.school_class}} класс</a></li>
           {% endfor %}
           {% else %}
             <li class="list">Список пуст!</li>
@@ -25,12 +25,11 @@
       <ul>
         {% if state_list %}
           {% for i in state_list %}
-            <h6 class="font-weight-normal"><li><a href="edit/{{i.id}}">{{i.date}} - {{i.school_class}}</a></li>
-            </h6>
+            <li><a href="edit/{{i.id}}" class="href">{{i.date}} - {{i.school_class}}</a></li>
           {% endfor %}
-          <h6 class="font-weight-normal"><li><a href="{% url 'list'%}">(Показать весь список)</a></li></h6>
+            <li><a href="{% url 'list'%}" class="href">(Показать весь список)</a></li>
         {% else %}
-          <h6 class="font-weight-normal"><li>Список пуст!</li></h6>
+          <li>Список пуст!</li>
         {% endif %}
       </ul>
     </div>

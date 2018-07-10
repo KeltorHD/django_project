@@ -10,14 +10,15 @@
 	<ul>
 	    {% if school_class %}
 	      {% for i in school_class %}
-	        <li><a href='{{ i.id }}'>{{i.school_class}} класс</a></li>
+	        <li>
+	        	<a href='{{ i.id }}' class="href">{{i.school_class}} класс</a>
+	        </li>
 	      {% endfor %}
 	    {% else %}
 	      <li>Список пуст!</li>
 	    {% endif %}
 	</ul>
 </div>
-
 
 
 {% endblock %}
