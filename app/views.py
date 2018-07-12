@@ -236,11 +236,18 @@ def pasrec(request):
 
 
 def image(request):
-    im = Image.open('app/static/img/new.png', 'r')
+    im = Image.open('app/static/img/image.jpg', 'r')
 
     pix=im.load()
     w=im.size[0]
     h=im.size[1]
+    width = []
+    heigth = []
+    for i in range(w):
+        width.append(i)
+
+    for i in range(h):
+        heigth.append(i)
 
     image = []
     for i in range(w):
@@ -250,4 +257,4 @@ def image(request):
     return render(
         request,
         'app/image.html',
-        {'image':image, 'w':w, 'h':h})
+        {'image':image, 'w':width, 'h':heigth})
