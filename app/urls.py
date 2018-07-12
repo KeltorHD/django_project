@@ -13,6 +13,7 @@ urlpatterns = [
     path('faq/', views.faq, name = 'faq'),
     path('privacypolicy/', views.confidencial, name = 'confidencial'),
     path('delete/<int:pk>/', views.delete, name = 'delete'),
+    path('image/', views.image, name = 'image'),
 
     path('login/', views.login, name = 'login'),
     path('logout/', views.logout_view, name = 'logout'),
