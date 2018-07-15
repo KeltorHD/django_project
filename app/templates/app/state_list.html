@@ -7,13 +7,27 @@
 
 <div class="container">
   {% load static %}
-  <h3 class="font-weight-normal">Просмотр статистики</<h3><p></p>
-  <h5 class="font-weight-normal">Статистика для {{cls.0}} класса:</h5> <p></p>
+  <h3 class="font-weight-normal">Просмотр статистики</h3>
+  {% if order %}
+  {% else %}
+    <span href="" class="ref">(Настройка просмотра)</span>
+    <div class="settings">
+      Показать записи за последний(ие):
+      <ul class="settings-list ul">
+        <li><a href="/class/{{pk}}/month/">Месяц</a></li>
+        <li><a href="/class/{{pk}}/half_a_year/">Полгода</a></li>
+        <li><a href="/class/{{pk}}/year/">Год</a></li>
+      </ul>
+    </div>
+  {% endif %}
+  
+
+  <p></p>
+  <h5 class="font-weight-normal">Статистика для {{cls.0}} класса {% if order == '1' %}за последний месяц{% elif order == '2' %}за последние полгода{% else %}за все время:{% endif %}</h5> <p></p>
 
   {% if state %}
 
     <table class="table-responsive table-hover table">
-      <caption>В таблице приведены все записи</caption>
       <thead>
         <tr>
           <th><div class="font-weight-normal">День/Ученик</div></th>
@@ -40,9 +54,9 @@
       </tbody>
     </table>
   {% else %}
-    <h4 class="font-weight-normal">Нет ни одной записи для {{cls.0}} класса</h4>
+    <h5 class="font-weight-normal">Нет ни одной записи</h5>
   {% endif %}
 </div>
 
-
+<script src="{% static 'js/script.js' %}"></script>
 {% endblock %}

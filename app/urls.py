@@ -6,6 +6,8 @@ urlpatterns = [
     path('', views.index, name = 'index'),
     path('class/', views.class_list, name = 'class'),
     path('class/<int:pk>/', views.class_detail_view, name='detail'),
+    path('class/<int:pk>/<str:kl>/', views.class_detail_view_order, name='detail_order'),
+    
     path('write/', views.writeindex, name = 'writeindex'),
     path('write/<int:pk>/', views.newwrite, name = 'newwrite'),
     path('write/edit/<int:pk>/', views.edit, name = 'state_edit'),

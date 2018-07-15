@@ -10,3 +10,21 @@
 .nav-item :hover{
   text-decoration: underline;
 }
+.ref{
+	font-size: 17px;
+	color: #000;
+}
+.ref:hover{
+	color: #000;
+	cursor: pointer;
+	text-decoration: underline;
+}
+ul{
+	list-style: circle;
+}
+.ul :hover{
+	list-style: disc;
+}
+.settings-list li a{
+	color: #000;
+}

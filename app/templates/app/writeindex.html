@@ -8,7 +8,7 @@
     <div class="col-sm-6">
       <h5 class="font-weight-normal">Выберите из списка один класc для добавления нового дня:</<h5>
       <p></p>
-      <ul>
+      <ul class="ul">
         {% if class %}
           {% for i in class %}
             <li><a href='{{ i.id }}' class="href">{{i.school_class}} класс</a></li>
@@ -22,7 +22,7 @@
     <div class="col-sm-6">
       <h5 class="font-weight-normal">Выберите из списка один класс для редактирования существующей записи:</<h5>
       <p></p>
-      <ul>
+      <ul class="ul">
         {% if state_list %}
           {% for i in state_list %}
             <li><a href="edit/{{i.id}}" class="href">{{i.date}} - {{i.school_class}}</a></li>

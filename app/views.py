@@ -10,6 +10,7 @@ from django.contrib.auth.models import User, Group
 
 from PIL import Image
 import PIL.Image
+import datetime
 
 def index(request):
     return render(
@@ -24,13 +25,30 @@ def faq(request):
 @login_required
 def class_detail_view(request, pk):
     state = State.objects.filter(school_class='{}'.format(SchoolClass.objects.filter(id=pk).first()), availability='+')
-    stistic = SchoolClass.objects.filter(id='{}'.format(pk))
+    cls = SchoolClass.objects.filter(id='{}'.format(pk))
     people = People.objects.filter(school_class='{}'.format(pk))
     return render(
         request,
         'app/state_list.html',
-        context = {'state': state, 'cls':stistic, 'people':people})
+        context = {'state': state, 'cls':cls, 'people':people, 'pk':pk})
 
+@login_required
+def class_detail_view_order(request,pk,kl):
+    cls = SchoolClass.objects.filter(id='{}'.format(pk))
+    people = People.objects.filter(school_class='{}'.format(pk))
+    if kl == 'month':
+        state = State.objects.filter(date__gt=datetime.date.today() + datetime.timedelta(days=-32), school_class='{}'.format(SchoolClass.objects.filter(id=pk).first()), availability='+')
+        order = '1'
+    elif kl == 'half_a_year':
+        state = State.objects.filter(date__gt=datetime.date.today() + datetime.timedelta(days=-183), school_class='{}'.format(SchoolClass.objects.filter(id=pk).first()), availability='+')
+        order = '2'
+    else:
+        state = State.objects.filter(school_class='{}'.format(SchoolClass.objects.filter(id=pk).first()), availability='+')
+        order = '3'
+    return render(
+        request,
+        'app/state_list.html',
+        {'state': state, 'cls':cls, 'people':people, 'order':order})
 
 def class_list(request):
     school_class = SchoolClass.objects.order_by('id')
@@ -236,7 +254,7 @@ def pasrec(request):
 
 
 def image(request, pk):
-    im = Image.open('app/static/img/{}.jpg'.format(pk), 'r')
+    im = Image.open('app/static/img/{}.png'.format(pk), 'r')
 
     pix=im.load()
     w=im.size[0]
