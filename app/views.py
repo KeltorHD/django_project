@@ -8,8 +8,6 @@ from django.contrib import messages, auth
 from django.contrib.auth import logout
 from django.contrib.auth.models import User, Group
 
-from PIL import Image
-import PIL.Image
 import datetime
 
 def index(request):
@@ -251,23 +249,3 @@ def pasrec(request):
         request,
         'app/pasrec.html',
         {'form':form})
-
-
-def image(request, pk):
-    im = Image.open('app/static/img/{}.png'.format(pk), 'r')
-
-    pix=im.load()
-    w=im.size[0]
-    h=im.size[1]
-    width = []
-    height = []
-    for i in range(w):
-        width.append(i)
-
-    for i in range(h):
-        height.append(i)
-
-    return render(
-        request,
-        'app/image.html',
-        {'w':width, 'h':height, 'pk':pk})

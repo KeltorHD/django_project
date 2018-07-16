@@ -40,12 +40,12 @@
         {% for i in state %}
           <tr scope = "row">
             {% ifchanged i.date %}
-              <th><div class="font-weight-normal">{{i.date}}</div></th>
+              <td><div class="font-weight-normal">{{i.date}}</div></td>
               {% for d in people%}
                 {% if d in i.people.all %}
-                  <th><div class="font-weight-normal">+</div></th>
+                  <td><div class="font-weight-normal">+</div></td>
                 {% else %}
-                  <th><div class="font-weight-normal">-</div></th>
+                  <td><div class="font-weight-normal">-</div></td>
                 {% endif %}
               {% endfor %}
             {% endifchanged %}
