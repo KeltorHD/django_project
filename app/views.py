@@ -7,7 +7,6 @@ from django.contrib.auth import authenticate, logout
 from django.contrib import messages, auth
 from django.contrib.auth import logout
 from django.contrib.auth.models import User, Group
-
 import datetime
 
 def index(request):
@@ -168,9 +167,17 @@ def login(request):
                     auth.login(request, user)
                     return redirect('index')
                 else:
-                    print("The password is valid, but the account has been disabled!")
+                    error = 'Ваш аккаунт выключен - напишите разработчику: keltorplaylife@gmail.com!'
+                    return render(
+                        request,
+                        'app/login.html',
+                        {'error':error})
             else:
-                messages.error(request, 'Неверный логин или пароль')
+                error = 'Неверный логин или пароль!'
+                return render(
+                    request,
+                    'app/login.html',
+                    {'error':error})
     else:
         form = LoginForm()
     return render(
@@ -185,16 +192,41 @@ def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
+            kirill = ('абвгдеёжзийклмнопрстуфхцчшщъыьэюя')
             username = form.cleaned_data.get('username', None)
-            if User.objects.filter(username=username) != None:
-                messages.error(request, 'Пользователь с таким логином уже существует')
+            find_kirill = [x for x in kirill if x in username.lower()]
+            if (len(username)<6) or (find_kirill):
+                error = 'Логин меньше 6 символов или написан не латиницей!'
+                return render(
+                    request,
+                    'app/register.html',
+                    {'error':error})
+            if User.objects.filter(username=username).exists():
+                error = 'Пользователь с таким логином уже существует!'
+                return render(
+                    request,
+                    'app/register.html',
+                    {'error':error})
             email = form.cleaned_data.get('email', None)
             first_name = form.cleaned_data.get('first_name', None)
             last_name = form.cleaned_data.get('last_name', None)
             password1 = form.cleaned_data.get('password1', None)
+
+            find_kirill = [x for x in kirill if x in password1.lower()]
+            if (find_kirill) or len(password1)<6:
+                error = 'Пароль меньше 6 символов или написан не латиницей!'
+                return render(
+                    request,
+                    'app/register.html',
+                    {'error':error})
+
             password2 = form.cleaned_data.get('password2', None)
             if password2 != password1:
-                messages.error(request, 'Пароли не совпадают')
+                error = 'Пароли не совпадают!'
+                return render(
+                    request,
+                    'app/register.html',
+                    {'error':error})
             user = User.objects.create_user(username, email, password1)
             user.first_name=first_name
             user.last_name=last_name
@@ -239,9 +271,17 @@ def pasrec(request):
                     auth.login(request, log)
                     return redirect('account')
                 else:
-                    messages.error(request, 'Новые пароли не совпадают')
+                    error = 'Новые пароли не совпадают!'
+                    return render(
+                        request,
+                        'app/pasrec.html',
+                        {'error':error})
             else:
-                messages.error(request, 'Старый пароль неверен!')
+                error = 'Старый пароль неверен!'
+                return render(
+                    request,
+                    'app/pasrec.html',
+                    {'error':error})
             
     else:
         form = PasrecForm()

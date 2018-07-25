@@ -26,4 +26,6 @@ label {
   text-transform: uppercase;
   font-size: 15px;
 }
-
+.href, .href:hover{
+  color: #000;
+}
