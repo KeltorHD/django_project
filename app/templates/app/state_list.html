@@ -23,7 +23,6 @@
   
 
   <p></p>
-  <h5 class="font-weight-normal">Статистика для {{cls.0}} класса {% if order == '1' %}за последний месяц{% elif order == '2' %}за последние полгода{% else %}за все время:{% endif %}</h5> <p></p>
 
   {% if state %}
 
@@ -56,7 +55,7 @@
   {% else %}
     <h5 class="font-weight-normal">Нет ни одной записи</h5>
   {% endif %}
-</div>
 
 <script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/table.js' %}"></script>
 {% endblock %}

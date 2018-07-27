@@ -1,3 +1,13 @@
+hr {
+  color: #DEE2E6; /*для IE */
+  background-color:#DEE2E6; /*для Firefox, Opera, Safari*/
+  border:0px none;
+  height:1px; /* высота 1px IE, Firefox, Opera, Safari */
+  clear:both; /* для очистки, если тег идет после float елемента */
+}
+.block{
+	font-size: 22px;
+}
 .href{
   font-size: 17px;
 }
