@@ -7,9 +7,8 @@
 	<h3 class="font-weight-normal">Добро пожаловать на сайт ЕшьУдобно!</<h3><p></p>
 	<h5 class="font-weight-normal"></h5>
 	<p></p>
-	<p class="lead">Заметил баг или есть хорошая идея? Напиши разработчику - keltorplaylife@gmail.com</p>
+	
 	{% load static %}
-
 	<div id="demo" class="carousel slide" data-ride="carousel">
 
 	  <!-- Indicators -->
@@ -22,13 +21,31 @@
 	  <!-- The slideshow -->
 	  <div class="carousel-inner">
 	    <div class="carousel-item active">
-	      <img src="{% static 'img/slide.svg' %}" alt="">
+	      <img src="{% static 'img/slide1.png' %}" alt="">
+	      <div class="carousel-caption text-left">
+	        <h1>Просто</h1>
+	        <p>Внесение данных о посещении общепита и просмотр статистики в 2 клика!</p>
+	        <p>Нашим сервисом пользуются уже {{people}} человек(а), присоединяйся!</p>
+	        <p><a class="btn btn-lg btn-primary" href="" role="button">Зарегистрироваться</a></p>
+	      </div>
 	    </div>
 	    <div class="carousel-item">
-	      <img src="{% static 'img/slide.svg' %}" alt="">
+	      <img src="{% static 'img/slide2.png' %}" alt="">
+	      <div class="carousel-caption text-left">
+	        <h1>Быстро</h1>
+	        <p>Заполнение данных на 1 класс всего за 15 секунд!</p>
+	        <p>Нашим сервисом пользуются уже {{people}} человек(а), присоединяйся!</p>
+	        <p><a class="btn btn-lg btn-primary" href="" role="button">Зарегистрироваться</a></p>
+	      </div>
 	    </div>
 	    <div class="carousel-item">
-	      <img src="{% static 'img/slide.svg' %}" alt="">
+	      <img src="{% static 'img/slide3.png' %}" alt="">
+	      <div class="carousel-caption text-left">
+	        <h1>Удобно</h1>
+	        <p>Продуманные фильтры для удобного просмотра на всех устройствах</p>
+	        <p>Нашим сервисом пользуются уже {{people}} человек(а), присоединяйся!</p>
+	        <p><a class="btn btn-lg btn-primary" href="" role="button">Зарегистрироваться</a></p>
+	      </div>
 	    </div>
 	  </div>
 	  
@@ -40,7 +57,9 @@
 	    <span class="carousel-control-next-icon"></span>
 	  </a>
 	</div>
-
+	<p></p>
+	<p class="lead">Заметил баг или есть хорошая идея? Напиши разработчику - keltorplaylife@gmail.com</p>
+	
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 {% endblock %}

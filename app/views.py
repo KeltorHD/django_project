@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import People, State, SchoolClass
+from .models import People, State, SchoolClass, User
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from .forms import StateForm, LoginForm, RegisterForm, PasrecForm
@@ -12,7 +12,8 @@ import datetime
 def index(request):
     return render(
         request,
-        'index.html')
+        'index.html',
+        {"people":len(User.objects.all())})
 
 def faq(request):
     return render(
