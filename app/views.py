@@ -87,7 +87,7 @@ def newwrite(request, pk):
         else:
             form = StateForm()
             form.fields['people'].queryset = People.objects.filter(school_class='{}'.format(pk))
-            people = People.objects.filter(school_class='{}'.format(pk))
+        people = People.objects.filter(school_class='{}'.format(pk))
         return render(
             request,
             'app/newwrite.html',

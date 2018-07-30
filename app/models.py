@@ -40,4 +40,4 @@ class State(models.Model):
         return reverse('date-detail', args=[str(self.id)])
 
     class Meta:
-        ordering = ['date']
+        ordering = ['-date']
