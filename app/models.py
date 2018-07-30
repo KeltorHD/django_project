@@ -22,7 +22,7 @@ class People(models.Model):
         return '{} {}'.format(self.first_name, self.last_name)
 
 class State(models.Model):
-    date = models.DateField(help_text = '- в формате гггг-мм-дд')
+    date = models.DateField(help_text = '- в формате дд.мм.гггг')
     status = models.CharField(max_length=1)
     people = models.ManyToManyField(People, 
         help_text = '-выберите только тех, кто пришел!',

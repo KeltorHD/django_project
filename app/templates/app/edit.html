@@ -1,5 +1,7 @@
 {% extends "base_generic.html" %}
 {% block title %}<title>Изменить запись</title>{% endblock %}
+{% load static %}
+{% block static %}<link rel="stylesheet" href="{% static 'css/multiple-select.css' %}">{% endblock %}
 {% block content %}
 
 <div class="container">
@@ -13,6 +15,9 @@
   </form>
 </div>
 
-
+<script src="{% static 'js/multiple-select.js' %}"></script>
+<script>
+    $('select').multipleSelect();
+</script>
 
 {% endblock %}

@@ -17,8 +17,8 @@ class StateForm(forms.ModelForm):
             'date':_('Дата')
         }
         widgets = {
-            'date': DateInput()
-        }
+            'date': DateInput(),
+            }
 
 class LoginForm(forms.Form):
     username = forms.CharField(
