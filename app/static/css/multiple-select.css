@@ -1,3 +1,25 @@
+.href{
+  font-size: 17px;
+}
+.navbar-brand {
+  font-size: 1.5rem;
+}
+.navbar-brand :hover{
+  text-decoration: underline;
+}
+.nav-item :hover{
+  text-decoration: underline;
+}
+.ref{
+    font-size: 17px;
+    color: #000;
+}
+.ref:hover{
+    color: #000;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 /**
  * @author zhixin wen <wenzhixin2010@gmail.com>
  */
