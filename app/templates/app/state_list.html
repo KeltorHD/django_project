@@ -4,8 +4,14 @@
 
 {% block content %}
 
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/datatables.min.css' %}">
+ 
+<script type="text/javascript" charset="utf8" src="{% static 'js/datatables.min.js' %}"></script>
+<script type="text/javascript" charset="utf8" src="{% static 'js/dataTables.fixedColumns.min.js' %}"></script>
+
 <div class="container">
-  {% load static %}
   <h3 class="font-weight-normal">Просмотр статистики</h3>
   <p></p>
   {% if state %}
@@ -22,7 +28,7 @@
         {% for i in state %}
           <tr scope = "row">
             {% ifchanged i.date %}
-              <td><div class="font-weight-normal">{{i.date|date:"d-b-y"}}</div></td>
+              <td><div class="font-weight-normal">{{i.date|date:"d-m-y"}}</div></td>
               {% for d in people%}
                 {% if d in i.people.all %}
                   <td><div class="font-weight-normal">+</div></td>
@@ -44,10 +50,5 @@
     <h5 class="font-weight-normal">Нет ни одной записи</h5>
   {% endif %}
     
-
-<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
- 
-<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
-
 <script src="{% static 'js/table.js' %}"></script>
 {% endblock %}
