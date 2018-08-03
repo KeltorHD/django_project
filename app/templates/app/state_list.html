@@ -7,24 +7,9 @@
 <div class="container">
   {% load static %}
   <h3 class="font-weight-normal">Просмотр статистики</h3>
-  {% if order %}
-  {% else %}
-    <span href="" class="ref">(Настройка просмотра)</span>
-    <div class="settings">
-      Показать записи за последний(ие):
-      <ul class="settings-list ul">
-        <li><a href="/class/{{pk}}/month/">Месяц</a></li>
-        <li><a href="/class/{{pk}}/half_a_year/">Полгода</a></li>
-        <li><a href="/class/{{pk}}/year/">Год</a></li>
-      </ul>
-    </div>
-  {% endif %}
-  
-
   <p></p>
-
   {% if state %}
-    <table id="table" class="table-responsive table-hover table">
+    <table id="table" class="table-responsive table-hover table display">
       <thead>
         <tr>
           <th><div class="font-weight-normal">День/Ученик</div></th>
@@ -37,7 +22,7 @@
         {% for i in state %}
           <tr scope = "row">
             {% ifchanged i.date %}
-              <td><div class="font-weight-normal">{{i.date}}</div></td>
+              <td><div class="font-weight-normal">{{i.date|date:"d-b-y"}}</div></td>
               {% for d in people%}
                 {% if d in i.people.all %}
                   <td><div class="font-weight-normal">+</div></td>
@@ -50,10 +35,19 @@
         {% endfor %}
       </tbody>
     </table>
+    <p></p>
+    {% if request.user.groups.get.name == "Writer" %}
+      <br>  
+      <button type="button" class="btn btn-outline-primary" onclick="tableToExcel('table', 'Example')">Сохранить для Excel</button>
+    {% endif %}
   {% else %}
     <h5 class="font-weight-normal">Нет ни одной записи</h5>
   {% endif %}
+    
 
-<script src="{% static 'js/script.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+ 
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
 <script src="{% static 'js/table.js' %}"></script>
 {% endblock %}

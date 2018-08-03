@@ -30,23 +30,6 @@ def class_detail_view(request, pk):
         'app/state_list.html',
         context = {'state': state, 'cls':cls, 'people':people, 'pk':pk})
 
-@login_required
-def class_detail_view_order(request,pk,kl):
-    cls = SchoolClass.objects.filter(id='{}'.format(pk))
-    people = People.objects.filter(school_class='{}'.format(pk))
-    if kl == 'month':
-        state = State.objects.filter(date__gt=datetime.date.today() + datetime.timedelta(days=-32), school_class='{}'.format(SchoolClass.objects.filter(id=pk).first()), availability='+')
-        order = '1'
-    elif kl == 'half_a_year':
-        state = State.objects.filter(date__gt=datetime.date.today() + datetime.timedelta(days=-183), school_class='{}'.format(SchoolClass.objects.filter(id=pk).first()), availability='+')
-        order = '2'
-    else:
-        state = State.objects.filter(school_class='{}'.format(SchoolClass.objects.filter(id=pk).first()), availability='+')
-        order = '3'
-    return render(
-        request,
-        'app/state_list.html',
-        {'state': state, 'cls':cls, 'people':people, 'order':order})
 
 def class_list(request):
     school_class = SchoolClass.objects.order_by('id')
