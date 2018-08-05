@@ -1,16 +1,16 @@
 {% extends "base_generic.html" %}
-{% block title %}<title>Раздел Чаво</title>{% endblock %}
+{% block title %}<title>Раздел Справочная</title>{% endblock %}
 {% block content %}
 
 <div class="container">
-	<h3 class="font-weight-normal">Раздел чаво</h3>
+	<h3 class="font-weight-normal">Справочная</h3>
 	<p></p>
 	<h5 class="font-weight-normal">
-		ЕшьУдобно - открытый проект учета посещения учениками заведения общепита. Разрабатывается и поддерживается одним человеком - tg: @KeltroHD, email: keltorplaylife@gmail.com. Ниже полное руководство, как пользоваться сайтом
+		ЕшьУдобно - открытый проект учета посещения учениками заведения общепита. Разрабатывается и поддерживается одним человеком - tg: @KeltroHD, email: keltorplaylife@gmail.com. Ниже ответы на вопросы, которые могут возникнуть при взаимодействии с сайтом:
 	</h5>
 
 	<br>
-	<h4 class="text-center font-weight-normal head">Вопрос - ответ по сервису</h4>
+	<div class="text-center font-weight-normal head">Вопрос - ответ по сервису</div>
 	<hr>
 	<div class="font-weight-normal ptr" onclick="ch_disp('A1')"><span>&#8659;</span> Как добавить запись?</div>
 	<div class="font-weight-normal answer" id="A1" style="display:none"><span>&#8658;</span> Как-нибудь можно!</div>
@@ -21,6 +21,8 @@
 	<div class="font-weight-normal ptr" onclick="ch_disp('A3')"><span>&#8659;</span> Как изменить существующую запись?</div>
 	<div class="font-weight-normal answer" id="A3" style="display:none"><span>&#8658;</span> Как-нибудь можно!</div>
 	<hr>
+
+	<p class="lead">Не нашел нужного ответа? Напиши разработчику</p>
 
 </div>
 
