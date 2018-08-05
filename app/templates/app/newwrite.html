@@ -20,7 +20,7 @@
 		   	 	<label for="id_people">Ученики:</label>
 					<select name="people" id="id_people" multiple="multiple">
 						{% for i in people %}
-							<option value="{{i.id}}">{{i}}</option>
+							<option value="{{i.id}}"> {{i}}</option>
 						{% endfor %}
 					</select>
 					<span class="helptext">-выберите только тех, кто пришел!</span>

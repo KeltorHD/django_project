@@ -5,18 +5,31 @@
 <div class="container">
 	<h3 class="font-weight-normal">Раздел чаво</h3>
 	<p></p>
-	<h5 class="font-weight-normal">Ссылки на некоторые пункты раздела:</h5>
-	<ul class="faq ul">
-		<li><a href="">Первый якорь</a></li>
-		<li>
-			<a href="">Второй якорь</a>
-			<ul>
-				<li><a href="">Подпункт второго якоря</a></li>
-			</ul>
-		</li>
+	<h5 class="font-weight-normal">
+		ЕшьУдобно - открытый проект учета посещения учениками заведения общепита. Разрабатывается и поддерживается одним человеком - tg: @KeltroHD, email: keltorplaylife@gmail.com. Ниже полное руководство, как пользоваться сайтом
+	</h5>
 
-	</ul>
+	<br>
+	<h4 class="text-center font-weight-normal head">Вопрос - ответ по сервису</h4>
+	<hr>
+	<div class="font-weight-normal ptr" onclick="ch_disp('A1')"><span>&#8659;</span> Как добавить запись?</div>
+	<div class="font-weight-normal answer" id="A1" style="display:none"><span>&#8658;</span> Как-нибудь можно!</div>
+	<hr>
+	<div class="font-weight-normal ptr" onclick="ch_disp('A2')"><span>&#8659;</span> Как просмотреть статистику?</div>
+	<div class="font-weight-normal answer" id="A2" style="display:none"><span>&#8658;</span> Как-нибудь можно!</div>
+	<hr>
+	<div class="font-weight-normal ptr" onclick="ch_disp('A3')"><span>&#8659;</span> Как изменить существующую запись?</div>
+	<div class="font-weight-normal answer" id="A3" style="display:none"><span>&#8658;</span> Как-нибудь можно!</div>
+	<hr>
+
 </div>
 
+<script type="text/javascript" language="javascript">
+var ch_disp = function( id )
+{
+	var el = document.getElementById( id );
+	el.style.display = ( el.style.display == 'block' )? 'none' : 'block';
+}
+</script>
 
 {% endblock %}

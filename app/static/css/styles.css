@@ -1,3 +1,15 @@
+.head{
+  padding-bottom: 3px;
+}
+.ptr{
+  cursor: pointer;
+  font-size: 20px;
+}
+.answer{
+  padding-top: 10px;
+  padding-left: 5px;
+  font-size: 18px;
+}
 .carousel-item {
   height: 32rem;
   background-color: #777;
