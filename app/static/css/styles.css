@@ -1,5 +1,5 @@
 .li{
-  font-size: 20px;
+  font-size: 18px;
 }
 .opon :hover{
   list-style: disc;
@@ -10,12 +10,12 @@
 }
 .ptr{
   cursor: pointer;
-  font-size: 20px;
+  font-size: 18px;
 }
 .answer{
   padding-top: 10px;
   padding-left: 5px;
-  font-size: 18px;
+  font-size: 17px;
 }
 .carousel-item {
   height: 32rem;
