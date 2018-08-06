@@ -10,16 +10,58 @@
 	</h5>
 
 	<br>
+	<div class="text-center font-weight-normal head">Возможности сервиса</div>
+	<hr>
+	<ul class="opon">
+		<li class="li">Добавление записей о посещении учениками разных классов общепита (задание даты и количество людей)</li>
+		<li class="li">Просмотр записей для разных классов (с фильтрами для удобного просмотра)</li>
+		<li class="li">Скачивание Excel таблицы с данными посещения</li>
+		<li class="li">Редактирование существующих записей (изменение даты и количество людей)</li>
+		<li class="li">Система аккаунтов: Простые (Member) - только просмотр статистики, Редактор (Writer) - всем права</li>
+	</ul>
+	<hr>
+
+	<br>
 	<div class="text-center font-weight-normal head">Вопрос - ответ по сервису</div>
 	<hr>
-	<div class="font-weight-normal ptr" onclick="ch_disp('A1')"><span>&#8659;</span> Как добавить запись?</div>
-	<div class="font-weight-normal answer" id="A1" style="display:none"><span>&#8658;</span> Как-нибудь можно!</div>
+	<div class="font-weight-normal ptr" onclick="ch_disp('A1')"><span>&#8659;</span> Как зарегистрировать аккаунт?</div>
+	<div class="font-weight-normal answer" id="A1" style="display:none"><span>&#8658;</span> Перейти по <a href="/register/" target="_blank">ссылке</a>, ввести все данные, нажать конпку "зарегистрироваться"</div>
+
 	<hr>
-	<div class="font-weight-normal ptr" onclick="ch_disp('A2')"><span>&#8659;</span> Как просмотреть статистику?</div>
-	<div class="font-weight-normal answer" id="A2" style="display:none"><span>&#8658;</span> Как-нибудь можно!</div>
+
+	<div class="font-weight-normal ptr" onclick="ch_disp('A2')">
+		<span>&#8659;</span> 
+		Как добавить данные о посещении заведения общепита?
+	</div>
+	<div class="font-weight-normal answer" id="A2" style="display:none">	
+		<p><span>&#8658;</span>Все данные вносятся только <a href="/register/" target="_blank">зарегистрированными</a> пользователями!</p>
+		Если есть аккаунт имеет все права (можно проверить на этой <a href="/account/" target="_blank">странице</a>): <br>
+		Нужно перейти на страницу <a href="/write/" target="_blank">добавления новой записи</a>, выбрать класс (в левой колонке). Далее выбрать дату посещения и учеников, которые присутствовали. Нажимаете кнопку "сохранить" - запись добавлена! <p></p>
+		Если аккаунт имеет права только на чтение: <br>
+		Пишите на почту разработчика о наделении правами доступа, после их получения выполняете действия выше
+	</div>
+	
 	<hr>
-	<div class="font-weight-normal ptr" onclick="ch_disp('A3')"><span>&#8659;</span> Как изменить существующую запись?</div>
-	<div class="font-weight-normal answer" id="A3" style="display:none"><span>&#8658;</span> Как-нибудь можно!</div>
+
+	<div class="font-weight-normal ptr" onclick="ch_disp('A3')">
+		<span>&#8659;</span> 
+		Как отредактировать или удалить добавленную запись?
+	</div>
+	<div class="font-weight-normal answer" id="A3" style="display:none">
+		<span>&#8658;</span> Переходите на страницу <a href="/write/" target="_blank">добавления новой записи</a>, выбираете запись по дате и классу (в правой колонке). Далее нажимаете кнопку "удалить" или меняете дату, отмечаете учеников и нажимаете "сохранить"
+	</div>
+
+	<hr>
+
+	<div class="font-weight-normal ptr" onclick="ch_disp('A4')">
+		<span>&#8659;</span> 
+		Как скачать статистику для класса?
+	</div>
+	<div class="font-weight-normal answer" id="A4" style="display:none">
+		<p><span>&#8658;</span> Для скачивания статистики необходимо иметь статус редактор!</p>
+		Перейдите на страницу <a href="/class/" target="_blank">просмотра статистики</a>, выберите класс. Внизу страницы будет кнопка "Скачать для Excel" - нажмите и загрузка начнется!
+	</div>
+
 	<hr>
 
 	<p class="lead">Не нашел нужного ответа? Напиши разработчику</p>

@@ -10,7 +10,7 @@
 	<h5 class="font-weight-normal">Пользователь: {{ first_name }} {{ last_name }}</h5>
 
 	<h5 class="font-weight-normal">Электронная почта: {{ email }}</h5>
-	<h5 class="font-weight-normal">Права доступа: {% if access == 'Writer'%} Доступ ко всем страницам сайта{% else %} Ограниченный доступ{% endif %}</h5>
+	<h5 class="font-weight-normal">Права доступа: {% if access == 'Writer'%} Редактор (доступ ко всем страницам сайта){% else %} Простой пользователь (ограниченный доступ){% endif %}</h5>
 	<p></p>
 	<a href="{% url 'logout' %}" class="btn btn-outline-primary">Выйти</a> <a href="{% url 'pasrec' %}" class="btn btn-outline-primary">Сменить пароль</a>
 
