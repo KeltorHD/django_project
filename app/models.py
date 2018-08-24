@@ -6,6 +6,7 @@ import uuid
 
 class SchoolClass(models.Model):
     school_class = models.CharField(max_length=10, help_text = 'Класс')
+    stats = models.BigIntegerField(default=0)
     def __str__(self):
         return self.school_class
         # Возвращает id 0_о

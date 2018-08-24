@@ -23,12 +23,15 @@ def faq(request):
 @login_required
 def class_detail_view(request, pk):
     state = State.objects.filter(school_class='{}'.format(SchoolClass.objects.filter(id=pk).first()), availability='+')
-    cls = SchoolClass.objects.filter(id='{}'.format(pk))
-    people = People.objects.filter(school_class='{}'.format(pk))
+    cls = SchoolClass.objects.filter(id=pk)
+    people = People.objects.filter(school_class=pk)
+    stats = SchoolClass.objects.get(id=pk)
+    stats.stats += 1
+    stats.save()
     return render(
         request,
         'app/state_list.html',
-        context = {'state': state, 'cls':cls, 'people':people, 'pk':pk})
+        context = {'state': state, 'cls':cls, 'people':people, 'pk':pk, 'stats':stats.stats})
 
 
 def class_list(request):
@@ -193,6 +196,12 @@ def register(request):
                     'app/register.html',
                     {'error':error})
             email = form.cleaned_data.get('email', None)
+            if User.objects.filter(email=email).exists():
+                error = 'Пользователь с такой почтой уже зарегистрирован!'
+                return render(
+                    request,
+                    'app/register.html',
+                    {'error':error})
             first_name = form.cleaned_data.get('first_name', None)
             last_name = form.cleaned_data.get('last_name', None)
             password1 = form.cleaned_data.get('password1', None)
