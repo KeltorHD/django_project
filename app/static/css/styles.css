@@ -60,6 +60,12 @@ hr {
 	cursor: pointer;
 	text-decoration: underline;
 }
+.a{
+  color: #000;
+}
+.a:hover{
+  color: #000;
+}
 ul{
 	list-style: circle;
 }

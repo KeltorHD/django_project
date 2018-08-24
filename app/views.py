@@ -133,7 +133,7 @@ def list(request):
         return render(
             request,
             'app/permissions.html')
-
+        
 def confidencial(request):
     return render(
         request,
@@ -234,12 +234,14 @@ def account(request):
     last_name = request.user.last_name
     email = request.user.email
     access = request.user.groups.get().name
+    state_list = State.objects.all().count()
+    state_your = State.objects.filter(author=request.user).count()
     return render(
         request,
         'app/account.html',
-        {'first_name':first_name, 'last_name':last_name, 'email':email.lower(), 'access':access})
+        {'first_name':first_name, 'last_name':last_name, 'email':email.lower(), 'access':access, 'state_list':state_list, 'state_your':state_your})
 
-@login_required
+@login_required 
 def pasrec(request):
     if request.method == 'POST':
         form = PasrecForm(request.POST)
