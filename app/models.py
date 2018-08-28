@@ -21,6 +21,8 @@ class People(models.Model):
     school_class = models.ForeignKey(SchoolClass, help_text = 'Класс ученика', on_delete = models.SET_NULL, null=True)
     def __str__(self):
         return '{} {}'.format(self.first_name, self.last_name)
+    def name(self):
+        return '{} {}'.format(self.first_name, self.last_name)
 
 class State(models.Model):
     date = models.DateField(help_text = '- в формате дд.мм.гггг')

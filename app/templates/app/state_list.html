@@ -19,9 +19,15 @@
       <thead>
         <tr>
           <th><div class="font-weight-normal">День/Ученик</div></th>
-          {% for i in people %}
-            <th><div class="font-weight-normal">{{i}}</div></th>
-          {% endfor %}
+          {% if access == 'Writer' %}
+            {% for i in people %}
+              <th><div class="font-weight-normal">{{i}}</div></th>
+            {% endfor %}
+          {% else %}
+            {% for i in people %}
+              <th><div class="font-weight-normal">{% if i.name == name %}{{i}}{% else %}<Неизвестный гражданин РФ>{% endif %}</div></th>
+            {% endfor %}
+          {% endif %}
         </tr>
       </thead>
       <tbody>

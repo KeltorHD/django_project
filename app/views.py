@@ -28,10 +28,15 @@ def class_detail_view(request, pk):
     stats = SchoolClass.objects.get(id=pk)
     stats.stats += 1
     stats.save()
+
+    first_name = request.user.first_name
+    last_name = request.user.last_name
+    name = first_name + ' ' + last_name
+    access = request.user.groups.get().name
     return render(
         request,
         'app/state_list.html',
-        context = {'state': state, 'cls':cls, 'people':people, 'pk':pk, 'stats':stats.stats})
+        context = {'state': state, 'cls':cls, 'people':people, 'pk':pk, 'stats':stats.stats, 'access':access, 'name':name})
 
 
 def class_list(request):
