@@ -7,7 +7,7 @@
 <div class="container">
 	{% if access == 'Writer' %}
 		<div class="row">
-			<div class="col-lg-6">
+			<div class="col-lg-6 pb-5">
 				<h3 class="font-weight-normal">Меню аккаунта</<h3><p></p>
 
 				<h5 class="font-weight-normal">Пользователь: {{ first_name }} {{ last_name }}</h5>
@@ -21,6 +21,7 @@
 				<h3 class="font-weight-normal">Статистика</<h3><p></p>
 				<h5 class="font-weight-normal">Всего записей: <a href="/write/edit/" class="a">{{state_list}}</a></h5>
 				<h5 class="font-weight-normal">Ваши записи: {{state_your}}</h5>
+				<h5><strong>Счастливого дня, <ins>{{ first_name }}</ins>!</strong></h5>
 			</div>
 		</div>
 	{% else %}
