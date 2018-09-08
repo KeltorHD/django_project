@@ -1,7 +1,10 @@
 {% extends "base_generic.html" %}
 {% block title %}<title>Изменить запись</title>{% endblock %}
 {% load static %}
-{% block static %}<link rel="stylesheet" href="{% static 'css/multiple-select.css' %}">{% endblock %}
+{% block static %}
+<link rel="stylesheet" href="{% static 'css/multiple-select.css' %}">
+<link rel="stylesheet" href="{% static 'css/datepicker.min.css' %}">
+{% endblock %}
 {% block content %}
 
 <div class="container">
@@ -9,15 +12,38 @@
 
   <p></p>
   <form method="POST" class="post-form">{% csrf_token %}
-      <h6 "font-weight-normal">{{ form.as_p }}</h6>
+      <h6 class="font-weight-normal">
+      	<p>
+	    		<label for="id_date">Дата:</label> 
+	    		<input name="date" required="" id="id_date" type="text" autocomplete="off" value="{{statedate|date:'Y-d-m'}}"> 
+	    		<span class="helptext">- в формате гггг-мм-дд</span>
+	   	 	</p>
+		   	<p>
+		   	 	<label for="id_people">Ученики:</label>
+					<select name="people" id="id_people" multiple="multiple">
+						{% for i in people %}
+		      		{{i}}
+		      	{% endfor %}
+					</select>
+					<span class="helptext">-выберите только тех, кто пришел!</span>
+				</p>
+    	</h6>
       <button type="submit" class="save btn btn-outline-primary">Сохранить</button>
       <a href="{% url 'delete' id %}" class="btn btn-outline-primary">Удалить запись</a>
   </form>
 </div>
 
 <script src="{% static 'js/multiple-select.js' %}"></script>
+<script src="{% static 'js/datepicker.min.js' %}"></script>
 <script>
-    $('select').multipleSelect();
-</script>
+$('select').multipleSelect();
 
+$('#id_date').datepicker({
+	dateFormat: 'yyyy-mm-dd',
+	autoClose: true,
+	clearButton: true,
+	altField: '',
+	keyboardNav: false
+})
+</script>
 {% endblock %}

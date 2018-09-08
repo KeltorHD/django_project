@@ -41,6 +41,7 @@ def class_detail_view(request, pk):
 
 def class_list(request):
     school_class = SchoolClass.objects.order_by('id')
+    print(school_class[0])
     return render(
         request,
         'app/schoolclass_list.html',
@@ -105,7 +106,7 @@ def edit(request, pk):
             form = StateForm(instance=state)
         return render(request, 
             'app/edit.html', 
-            {'form': form,'id':pk})
+            {'form': form,'id':pk, 'people':form['people'], 'statedate':state.date})
     else:
         return render(
             request,
