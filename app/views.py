@@ -9,6 +9,8 @@ from django.contrib.auth import logout
 from django.contrib.auth.models import User, Group
 import datetime
 
+import sqlite3
+
 def index(request):
     return render(
         request,
@@ -19,7 +21,49 @@ def faq(request):
     return render(
         request,
         'app/faq.html')
-    
+
+
+def update(request):
+    pass
+    # conn = sqlite3.connect("list.sqlite")
+    # cursor = conn.cursor()
+
+    # rows = cursor.execute("SELECT * FROM people")
+    # people = []
+    # classec = []
+    # cls = ''
+    # for row in rows:
+    #     if row[1] == 'Ф. И. О.':
+    #         a = row[0].splitlines()[0]
+    #         classec.append(a)
+    #         cls = a
+    #         continue
+
+    #     a = []
+    #     for i in range(len(row)):
+    #         a.append(row[i])
+    #         a[0] = cls
+    #     people.append(a)
+    # for i in classec:
+    #     record = SchoolClass(school_class=i)
+    #     record.save()
+    # for i in people:
+    #     cls = SchoolClass.objects.filter(school_class='{}'.format(i[0]))
+    #     if not i[1]:
+    #         continue
+    #     print(i)
+    #     first_name = i[1].split(' ')[1]
+    #     if not first_name:
+    #         first_name = i[1].split('  ')[1]
+    #     last_name = i[1].split(' ')[0]
+    #     if not first_name:
+    #         last_name = i[1].split('  ')[1]
+    #     record = People(first_name=first_name,
+    #         last_name=last_name,
+    #         school_class=cls[0])
+    #     record.save()
+    # return '<h1>{}</h1>'.format(len(people))
+
 @login_required
 def class_detail_view(request, pk):
     state = State.objects.filter(school_class='{}'.format(SchoolClass.objects.filter(id=pk).first()), availability='+')
