@@ -7,13 +7,14 @@ import uuid
 class SchoolClass(models.Model):
     school_class = models.CharField(max_length=10, help_text = 'Класс')
     stats = models.BigIntegerField(default=0)
+    number = models.IntegerField()
     def __str__(self):
         return self.school_class
         # Возвращает id 0_о
     def get_absolute_url(self):
         return reverse('class-detail', args=[str(self.id)])
     class Meta:
-    	ordering = ['school_class']
+    	ordering = ['number']
 
 class People(models.Model):
     first_name = models.CharField(max_length=100, help_text = 'Имя учащегося')

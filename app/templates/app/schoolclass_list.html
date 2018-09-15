@@ -7,17 +7,23 @@
 	<p></p>
 	<h5 class="font-weight-normal">Список всех классов, выберите один для просмотра статистики:</h5>
 	<p></p>
-	<ul class="ul">
-	    {% if school_class %}
-	      {% for i in school_class %}
-	        <li>
-	        	<a href='{{ i.id }}' class="href">{{i.school_class}} класс</a>
-	        </li>
-	      {% endfor %}
-	    {% else %}
-	      <li>Список пуст!</li>
-	    {% endif %}
-	</ul>
+
+	{% if view_class %}
+		<div class="row">
+			{% for i in view_class %}
+				<div class="col-md-2 mb-4">
+					<ul class="ul">
+						{% for d in i %}
+							<li><a href='{{ d.id }}' class="href">{{d.school_class}} класс</li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endfor %}
+		</div>
+	{% else %}
+		<li>Список пуст!</li>
+	{% endif %}
+	
 </div>
 
 

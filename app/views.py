@@ -10,6 +10,7 @@ from django.contrib.auth.models import User, Group
 import datetime
 
 import sqlite3
+import re
 
 def index(request):
     return render(
@@ -45,13 +46,12 @@ def update(request):
     #         a[0] = cls
     #     people.append(a)
     # for i in classec:
-    #     record = SchoolClass(school_class=i)
+    #     record = SchoolClass(school_class=i, number=re.sub(r"\D", "", i))
     #     record.save()
     # for i in people:
     #     cls = SchoolClass.objects.filter(school_class='{}'.format(i[0]))
     #     if not i[1]:
     #         continue
-    #     print(i)
     #     first_name = i[1].split(' ')[1]
     #     if not first_name:
     #         first_name = i[1].split('  ')[1]
@@ -84,12 +84,19 @@ def class_detail_view(request, pk):
 
 
 def class_list(request):
-    school_class = SchoolClass.objects.order_by('id')
-    print(school_class[0])
+    cls = SchoolClass.objects.all()
+    view_class = []
+    number = [1,2,3,4,5,6,7,8,9,10,11]
+    for i in number:
+        a = []
+        for d in cls:
+            if i == d.number:
+                a.append(d)
+        view_class.append(a)
     return render(
         request,
         'app/schoolclass_list.html',
-        {'school_class':school_class})
+        {'view_class':view_class})
 
 @login_required
 def writeindex(request):
