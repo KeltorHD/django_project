@@ -101,12 +101,20 @@ def class_list(request):
 @login_required
 def writeindex(request):
     if request.user.groups.get().name == 'Writer':
-        school_class = SchoolClass.objects.order_by('id')
+        cls = SchoolClass.objects.all()
+        view_class = []
+        number = [1,2,3,4,5,6,7,8,9,10,11]
+        for i in number:
+            a = []
+            for d in cls:
+                if i == d.number:
+                    a.append(d)
+            view_class.append(a)
         state_list = State.objects.filter(availability='+').order_by('-date')[0:5]
         return render(
             request,
             'app/writeindex.html',
-            context = {'class':school_class, 'state_list':state_list})
+            context = {'view_class':view_class, 'state_list':state_list})
     else:
         return render(
             request,

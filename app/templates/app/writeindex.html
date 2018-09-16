@@ -9,16 +9,23 @@
       <p></p>
       <h5 class="font-weight-normal">Выберите из списка один класc для добавления нового дня:</<h5>
       <p></p>
-      <ul class="ul">
-        {% if class %}
-          {% for i in class %}
-            <li><a href='{{ i.id }}' class="href">{{i.school_class}} класс</a></li>
-          {% endfor %}
-          {% else %}
-            <li class="list">Список пуст!</li>
-        {% endif %}
-      </ul>
 
+      {% if view_class %}
+        <div class="row">
+          {% for i in view_class %}
+            <div class="col-xs">
+              <ul class="ul">
+                {% for d in i %}
+                  <li><a href='{{ d.id }}' class="href">{{d.school_class}} класс</a></li> 
+                {% endfor %}
+              </ul>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <li class="list">Список пуст!</li>
+      {% endif %}
+      
     </div>
     <div class="col-sm-6">
       <h3 class="font-weight-normal">Редактировать записи</<h3>
