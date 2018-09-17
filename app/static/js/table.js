@@ -1,4 +1,5 @@
-function settingUpTable() {
+
+$(document).ready(function () {
     $('#table').DataTable( {
         "oLanguage": {
             "sLengthMenu": "Показать _MENU_ записей на странице",
@@ -12,10 +13,8 @@ function settingUpTable() {
                 "sPrevious": "Пред. стр."
             }
         }
+
     });
-}
-$(document).ready(function () {
-    settingUpTable();        
 })
 var tableToExcel = (function() {
   var uri = 'data:application/vnd.ms-excel;base64,'

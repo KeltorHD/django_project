@@ -16,7 +16,7 @@
       <h6 class="font-weight-normal">
       	<p>
 	    		<label for="id_date">Дата:</label> 
-	    		<input name="date" required="" id="id_date" type="text" autocomplete="off"  readonly data-select-date="2018-09-09"> 
+	    		<input name="date" required="" id="id_date" type="text" autocomplete="off" readonly> 
 	    		<span class="helptext">- в формате гггг-мм-дд</span>
 	   	 	</p>
 		   	<p>
@@ -36,6 +36,25 @@
 
 <script src="{% static 'js/multiple-select.js' %}"></script>
 <script src="{% static 'js/datepicker.min.js' %}"></script>
-<script src="{% static 'js/datepicker.edit.js' %}"></script>
+<script src="{% static 'js/datepickeredit.js' %}"></script>
+
+<script>
+	$('select').multipleSelect();
+
+
+	var $picker = $('#id_date')
+
+	$picker.datepicker({
+		todayButton:new Date(),
+		dateFormat: 'yyyy-mm-dd',
+		altField:'yyyy-mm-dd',
+		autoClose: true,
+		clearButton: true,
+		keyboardNav: false
+	})
+
+	var currentDate = new Date();
+	$picker.data('datepicker').selectDate(new Date({{date.year}}, {{date.month}}-1, {{date.day}}))
+</script>
 
 {% endblock %}

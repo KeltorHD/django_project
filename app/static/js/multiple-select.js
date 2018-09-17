@@ -744,7 +744,7 @@
 
         selectAllText: 'Выбрать всех',
         allSelected: 'Все выбраны',
-        countSelected: '# of % selected',
+        countSelected: '# из % выбрано',
         noMatchesFound: 'No matches found',
 
         styler: function () {

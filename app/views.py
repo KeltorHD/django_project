@@ -163,9 +163,20 @@ def edit(request, pk):
                 return redirect('writeindex')
         else:
             form = StateForm(instance=state)
+        d = []
+        cls =  State.objects.filter(id=pk)
+        clas = cls.values('school_class')
+        people1 = People.objects.filter(school_class__school_class=clas[0]['school_class']).values_list('id')
+        people = []
+        for i in range(len(people1)):
+            people.append(people1[i][0])
+        select = []
+        for i in form['people']:
+            if i.data['value'] in people:
+                select.append(i)
         return render(request, 
             'app/edit.html', 
-            {'form': form,'id':pk, 'people':form['people'], 'statedate':state.date})
+            {'form': form,'id':pk, 'people':select, 'date':state.date})
     else:
         return render(
             request,
